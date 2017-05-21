@@ -333,7 +333,7 @@ class Papitools(object):
             if activationResponse.status_code == 400 and activationResponse.json()['detail'].find('following activation warnings must be acknowledged'):
                 acknowledgeWarnings = []
                 for eachWarning in activationResponse.json()['warnings']:
-                    print("WARNING: " + eachWarning['detail'])
+                    print(("WARNING: " + eachWarning['detail']))
                     acknowledgeWarnings.append(eachWarning['messageId'])
                     acknowledgeWarningsJson = json.dumps(acknowledgeWarnings)
                 print("\nAutomatically acknowledging the warnings.\n")
@@ -350,11 +350,11 @@ class Papitools(object):
                 updatedactivationResponse = session.post(actUrl,data=updatedactivationDetails,headers=self.headers)
                 if updatedactivationResponse.status_code == 201:
                     print("Here is the activation link, that can be used to track\n")
-                    print(updatedactivationResponse.json()['activationLink'])
+                    print((updatedactivationResponse.json()['activationLink']))
                     self.final_response = "SUCCESS"
                 else:
                     self.final_response = "FAILURE"
-                    print(updatedactivationResponse.json())
+                    print((updatedactivationResponse.json()))
                 return updatedactivationResponse
             elif activationResponse.status_code == 422 and activationResponse.json()['detail'].find('version already activated'):
                 print("Property version already activated")
@@ -466,7 +466,7 @@ class Papitools(object):
             contractId = everyItem['contractId']
             productsUrl = 'https://' + self.access_hostname + '/papi/v0/products/?contractId=' + contractId
             productsResponse = session.get(productsUrl)
-            print(json.dumps(productsResponse.json()))
+            print((json.dumps(productsResponse.json())))
 
 
     def listRuleFormats(self,session):
